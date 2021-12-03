@@ -17,7 +17,7 @@ function Header() {
     return (
         <header>
             <div className="flex items-center w-full p-6">
-                <Image src="https://www.google.co.uk/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Hatsune_miku_logo_v3.svg"
                 height={40}
                 width={120} 
                 onClick={() => router.push('/')} 
