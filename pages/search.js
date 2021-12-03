@@ -1,14 +1,19 @@
 import Head from "next/head";
 import Header from "../components/Header"
 import Response from "../Response"
+import { useRouter } from "next/router";
+import SearchResults from "../components/SearchResults"
+
 function Search({ results}) {
-    // console.log(results)
+    console.log(results)
+    const router = useRouter();
     return (        
         <div>
             <Head>
-                <title>Search Results</title>
+                <title>{router.query.term} - Juancho Search</title>
             </Head>
             <Header />
+            <SearchResults results={results} />
 
         </div>
     )
@@ -18,9 +23,9 @@ export default Search;
 
 export async function getServerSideProps(context) {
     const useDummyData = true;
-    const startIndex = context.query.start || 0;
+    const startIndex = context.query.start || "0";
 
-    const data = useDummyData ? Response: await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${context.query.term}&start=${startIndex}`).then(res => res.json());
+    const data = useDummyData ? Response: await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${context.query.term}&start=${startIndex}`).then((res) => res.json());
 
     //After server rendered, results to client 
     return {
