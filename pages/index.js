@@ -3,8 +3,20 @@ import Avatar from '../components/Avatar'
 import { ViewGridIcon, MicrophoneIcon, SearchIcon } from '@heroicons/react/solid';
 import Image from 'next/image'
 import Footer from '../components/Footer'
+import { useRef } from 'react';
+import router, { useRouter } from 'next/router';
+
 
 export default function Home() {
+  const searchInput = useRef(null)
+  
+  const search = (e)=>{
+    e.preventDefault();
+    const term = searchInput.current.value;
+    if(!term) return;
+    router.push(`/search?term=${term}`);
+  }
+  
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <Head>
@@ -33,14 +45,14 @@ export default function Home() {
 
         <div className="flex items-center w-full max-w-md px-5 py-3 mt-5 border border-gray-300 rounded-full hover:shadow-lg focus-within:shadow-lg sm:max-w-xl lg:max-w-2xl">
             <SearchIcon className="h-5 mr-3 text-gray-500" />
-            <input type="text" className="flex-grow p-2 rounded-full focus:outline-none" />
+            <input ref={searchInput} type="text" className="flex-grow p-2 rounded-full focus:outline-none" />
             <MicrophoneIcon className="h-5 mr-3 text-gray-500" />
         </div>
         <div className="flex flex-col justify-center w-1/2 mt-8 space-y-2 sm:space-y-0 sm:flex-row sm:space-x-4">
-          <button className="bg-[#f8f9fa] p-3 rounded-md ring-gray-200 text-sm text-gray-800 cursor-pointer hover:ring-1 hover:shadow-md focus:outline-none active:ring-gray-300">
+          <button onClick={search} className="bg-[#f8f9fa] p-3 rounded-md ring-gray-200 text-sm text-gray-800 cursor-pointer hover:ring-1 hover:shadow-md focus:outline-none active:ring-gray-300">
             Google Search
           </button>
-          <button className="hover:shadow-md bg-[#f8f9fa] p-3 rounded-md ring-gray-200 text-sm text-gray-800 cursor-pointer hover:ring-1 focus:outline-none active:ring-gray-300">
+          <button onClick={search} className="hover:shadow-md bg-[#f8f9fa] p-3 rounded-md ring-gray-200 text-sm text-gray-800 cursor-pointer hover:ring-1 focus:outline-none active:ring-gray-300">
             Feeling Lucky
           </button>
 
