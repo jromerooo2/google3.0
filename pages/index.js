@@ -14,6 +14,7 @@ export default function Home() {
     e.preventDefault();
     const term = searchInput.current.value;
     if(!term) return;
+    
     router.push(`/search?term=${term}`);
   }
   
