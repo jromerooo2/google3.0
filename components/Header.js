@@ -33,7 +33,7 @@ function Header() {
                         Search
                     </button>
                 </form>
-                <Avatar className="ml-auto" url="https://avatars.githubusercontent.com/u/75763058?s=96&v=4" />      
+                <Avatar className="ml-auto" url="https://m.media-amazon.com/images/I/61oWKsxrJaL._AC_SL1442_.jpg" />      
             </div>
             <HeaderOptions />
         </header>
